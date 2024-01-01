@@ -1,0 +1,106 @@
+/********************************************************/
+/*********************** Default ************************/
+/********************************************************/
+/**
+ * describe: is used to separate method or classes
+ * context: is used to separate cases that we will have
+ *
+ * To use the option to fail fast (stop executing test fails at first error),
+ * you can use the flag --bail in the mocha test command
+ *
+ * To run only a block of tests with mocha, you can use the only code in
+ * describe, context or it
+ *
+ * To skip a test to run you can use skip code in describe, context or it
+ */
+
+// describe('Main', () => {
+//   describe('Method A', () => {
+//     context('Case 1', () => {
+//       // it.skip('should happen blabla', () => {
+//       it('should happen blabla', () => {
+//         // espera que aconteça (realmente o código do teste)
+//         // Entra de dados / método sum(2,2)
+//         // Espera retornar / retorno (4) => true && (3) => (false)
+//         throw new Error('just an error')
+//       })
+//     })
+
+//     // context.only('Case 2', () => {
+//     context('Case 2', () => {
+//       it('should happen blabla', () => {
+//         // espera que aconteça (realmente o código do teste)
+//         // Entra de dados / método sum(2,2)
+//         // Espera retornar / retorno (4) => true && (3) => (false)
+//         throw new Error('just an error')
+//       })
+
+//       it('should happen mimimi', () => {
+//         // espera que aconteça (realmente o código do teste)
+//         // Entra de dados / método sum(2,2)
+//         // Espera retornar / retorno (4) => true && (3) => (false)
+//       })
+//     })
+//   });
+
+//   describe('Method B', () => {
+
+//   });
+// });
+
+/********************************************************/
+/********************* Mocha Hooks **********************/
+/********************************************************/
+var expect = require('chai').expect
+
+describe('Main', () => {
+  var arr;
+
+  // // Vai rodar uma vez, antes do bloco
+  // before(() => {
+  //   // Iniciar uma conexão no banco
+  //   // Criar um conjunto de dados
+  // });
+
+  // // Vai rodar uma vez, depois do bloco
+  // after(() => {
+  //   // Fecha conexão do banco
+  //   // Apagar esse conjunto de dados
+  // });
+
+  // Vai rodar todas as vezes, antes de CADA bloco
+  beforeEach(() => {
+    arr = [1, 2, 3];
+  })
+
+  // // Vai rodar todas as vezes, depois de CADA bloco
+  // afterEach(() => {
+
+  // });
+
+  // Testar tipos ou se existe (smoke test)
+  // Smoke test: É aquele teste mais básico de todos, usado para verificar se uma variável, função ou componente
+  // existem
+  it('should be an array', () => {
+    expect(arr).to.be.an('array');
+  })
+
+  it('should have a size of 4 when push another value to the array', () => {
+    arr.push(4);
+    expect(arr).to.have.lengthOf(4);
+  });
+
+  it('should remove the value 3 when use pop in the array', () => {
+    arr.pop();
+    expect(arr).to.not.include(3);
+  });
+
+  it('should return true when pop 3 from the array', () => {
+    expect(arr.pop() === 3).to.be.true;
+  })
+
+  it('should have a size of 2 when pop a value from the array', () => {
+    arr.pop();
+    expect(arr).to.have.lengthOf(2);
+  });
+});
